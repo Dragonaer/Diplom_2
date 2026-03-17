@@ -6,4 +6,4 @@ class User:
 
         
 TEST_USER = User("loseva39@mail.ru", "qwerty", "Лиза")
-
+ORDER_NO_INGREDIENTS_MSG = "Ingredient ids must be provided"

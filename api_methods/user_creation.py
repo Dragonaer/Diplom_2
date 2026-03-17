@@ -48,3 +48,11 @@ class UserMethods:
             "password": password,
         }
         return requests.post(f'{URL.main_site}{endpoint}', json=body)
+    
+       
+    @staticmethod
+    @allure.step("Удаление пользователя.")
+    def delete_user(token):
+        endpoint = 'api/auth/user'
+        headers = {'Authorization': f'Bearer {token}'}
+        return requests.delete(f'{URL.main_site}{endpoint}', headers=headers)
