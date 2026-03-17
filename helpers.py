@@ -1,6 +1,7 @@
 import requests
 import random
 import string
+from data import *
 
 
 # метод генерирует строку, состоящую только из букв нижнего регистра, в качестве параметра передаём длину строки
@@ -37,3 +38,8 @@ def register_new_user_and_return_login_password():
 
     return login_pass
 
+def create_test_user():
+    email = generate_random_email()
+    password = generate_random_string(7)
+    name = generate_random_string(7)
+    return User(email, password, name)
