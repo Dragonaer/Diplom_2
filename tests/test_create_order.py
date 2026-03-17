@@ -4,7 +4,7 @@ import pytest
 from api_methods.create_order import CreteOrderMethods
 from api_methods.login_user import UserLoginMethods
 
-from data import TEST_USER
+from data import *
 
 class TestCreteOrder:
     @allure.title("Создание заказа с авторизацией")
@@ -32,7 +32,7 @@ class TestCreteOrder:
         with allure.step("Добавляем ингридиенты в заказ"):
             response = CreteOrderMethods.create_order("")
         assert response.status_code == 400, f"Expected status code 400, but got {response.status_code}"
-        assert response.json()["message"] == "Ingredient ids must be provided"
+        assert response.json()["message"] == ORDER_NO_INGREDIENTS_MSG
 
 
     @allure.title("Создание заказа с неверным хешем ингридиента")
