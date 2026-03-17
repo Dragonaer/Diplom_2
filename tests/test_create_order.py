@@ -2,20 +2,18 @@ import allure
 import pytest
 
 from api_methods.create_order import CreteOrderMethods
-from api_methods.login_user import UserLoginMethods
-
-from data import *
+from data import ORDER_NO_INGREDIENTS_MSG
 
 class TestCreteOrder:
     @allure.title("Создание заказа с авторизацией")
     @allure.description("Проверка создания заказа с авторизацией")
-    def test_create_order_with_auth(self):
-        with allure.step("Отправляем запрос на авторизацию пользователя с заполнением всех полей"):
-            response = UserLoginMethods.create_user(TEST_USER.email, TEST_USER.password, TEST_USER.name)
-        with allure.step("Добавляем ингридиенты в заказ"):
+    def test_create_order_with_auth(self, user, token, registered_user):
+        user, token = registered_user
+        with allure.step("Добавляем ингредиенты в заказ"):
             response = CreteOrderMethods.create_order('61c0c5a71d1f82001bdaaa6d')
         assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
         assert response.json()["success"] == True
+
 
     @allure.title("Создание заказа без авторизации")
     @allure.description("Проверка создания заказа без авторизации")

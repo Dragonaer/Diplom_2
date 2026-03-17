@@ -17,3 +17,14 @@ class UserLoginMethods:
         }
         return requests.post(f'{URL.main_site}{endpoint}', json=body)
       
+
+      
+    @staticmethod
+    @allure.step("Авторизация пользователя.")
+    def login_user(email, password):
+        endpoint = 'api/auth/login'
+        body = {
+            "email": email,
+            "password": password
+        }
+        return requests.post(f'{URL.main_site}{endpoint}', json=body)

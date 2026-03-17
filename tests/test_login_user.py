@@ -9,7 +9,7 @@ class TestLoginUser:
     @allure.description("Проверка авторизации существующего пользователя")
     def test_login_user_valid(self):
         with allure.step("Отправляем запрос на авторизацию пользователя с заполнением всех полей"):
-            response = UserLoginMethods.create_user(TEST_USER.email, TEST_USER.password, TEST_USER.name)
+            response = UserLoginMethods.login_user(TEST_USER.email, TEST_USER.password)
         assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
         assert response.json()["success"] == True
 
