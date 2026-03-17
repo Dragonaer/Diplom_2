@@ -7,7 +7,7 @@ from data import ORDER_NO_INGREDIENTS_MSG
 class TestCreteOrder:
     @allure.title("Создание заказа с авторизацией")
     @allure.description("Проверка создания заказа с авторизацией")
-    def test_create_order_with_auth(self, user, token, registered_user):
+    def test_create_order_with_auth(self, registered_user):
         user, token = registered_user
         with allure.step("Добавляем ингредиенты в заказ"):
             response = CreteOrderMethods.create_order('61c0c5a71d1f82001bdaaa6d')

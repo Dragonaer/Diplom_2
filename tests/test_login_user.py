@@ -15,17 +15,17 @@ class TestLoginUser:
 
     @allure.title("Авторизация пользователя с неверным email")
     @allure.description("Проверка авторизации пользователя с неверным email")
-    def test_login_user_incorrect_email(self, user):
+    def test_login_user_incorrect_email(self, temp_user):
         with allure.step("Отправляем запрос на авторизацию пользователя с неверным email"):
-            response = UserLoginMethods.create_user(user.email, TEST_USER.password, TEST_USER.name)
+            response = UserLoginMethods.create_user(temp_user.email, TEST_USER.password, TEST_USER.name)
         assert response.status_code == 401, f"Expected status code 401, but got {response.status_code}"
         assert response.json()["message"] == "email or password are incorrect"
 
     @allure.title("Авторизация пользователя с неверным паролем")
     @allure.description("Проверка авторизации пользователя с неверным паролем")
-    def test_login_user_incorrect_password(self, user):
+    def test_login_user_incorrect_password(self, temp_user):
         with allure.step("Отправляем запрос на авторизацию пользователя с неверным паролем"):
-            response = UserLoginMethods.create_user(TEST_USER.email, user.password, TEST_USER.name)
+            response = UserLoginMethods.create_user(TEST_USER.email, temp_user.password, TEST_USER.name)
         assert response.status_code == 401, f"Expected status code 401, but got {response.status_code}"
         assert response.json()["message"] == "email or password are incorrect"    
 

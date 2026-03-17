@@ -10,4 +10,9 @@ def registered_user():
     yield user, token
     UserMethods.delete_user(token)
 
-    
+
+
+@pytest.fixture
+def temp_user():
+    return create_test_user()
+
