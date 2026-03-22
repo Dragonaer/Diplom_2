@@ -2,8 +2,6 @@ import allure
 import pytest
 
 from api_methods.login_user import UserLoginMethods
-from data import TEST_USER
-from helpers import test_user
 
 
 class TestLoginUser:
